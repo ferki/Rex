@@ -5,7 +5,7 @@ use Cwd 'getcwd';
 my $cwd = getcwd;
 
 BEGIN {
-  use Test::More tests => 45;
+  use Test::More tests => 46;
   use Data::Dumper;
 
   use_ok 'Rex';
@@ -255,4 +255,10 @@ unlink "$tmp_dir/multiline-$$.txt";
 file "$tmp_dir/test.d-$$", ensure => "directory";
 
 ok( -d "$tmp_dir/test.d-$$", "created directory with file()" );
+
+file "$tmp_dir/test.d-$$", ensure => "absent";
+
+ok( ! -e "$tmp_dir/test.d-$$", "removed directory with file()" );
+
 rmdir "$tmp_dir/test.d-$$";
+unlink "$tmp_dir/test.d-$$";

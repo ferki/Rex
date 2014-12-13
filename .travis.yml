@@ -1,0 +1,12 @@
+language: perl
+perl:
+  - "5.20"
+before_install:
+  - cpanm --quiet --notest --skip-satisfied Perl::Critic
+  - perlcritic --quiet --single-policy=RequireTidyCode --statistics .
+install:
+  - sudo apt-get install libssh2-1-dev
+  - dzil authordeps --missing | cpanm --quiet --notest --skip-satisfied
+  - dzil listdeps --missing | cpanm --quiet --notest --skip-satisfied
+  - cpanm --quiet --notest --skip-satisfied DBI IPC::Shareable Parallel::ForkManager Digest::HMAC_SHA1 String::Escape XML::LibXML
+script: HARNESS_TIMER=1 dzil test --noauthor --release --automated -j2

@@ -14,4 +14,5 @@ install:
   - dzil listdeps --missing | cpanm --quiet --notest
   - cpanm --quiet --notest DBI IPC::Shareable Parallel::ForkManager Digest::HMAC_SHA1 String::Escape XML::LibXML Net::SFTP::Foreign IO::Pty
 script:
-  - HARNESS_TIMER=1 dzil test --release --automated -j2
+  - dzil build --in build --notgz
+  - cd build && prove --timer --lib --recurse --jobs 2 --shuffle t/

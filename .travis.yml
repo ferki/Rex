@@ -7,11 +7,11 @@ cache:
     - /home/travis/perl5/perlbrew/perls/5.22.0
 sudo: false
 before_install:
-  - cpanm --quiet --notest --skip-satisfied Perl::Critic
+  - cpanm --quiet --notest Perl::Critic
   - perlcritic --quiet --single-policy=RequireTidyCode bin
 install:
-  - dzil authordeps --missing | cpanm --quiet --notest --skip-satisfied
-  - dzil listdeps --missing | cpanm --quiet --notest --skip-satisfied
-  - cpanm --quiet --notest --skip-satisfied DBI IPC::Shareable Parallel::ForkManager Digest::HMAC_SHA1 String::Escape XML::LibXML Net::SFTP::Foreign
+  - dzil authordeps --missing | cpanm --quiet --notest
+  - dzil listdeps --missing | cpanm --quiet --notest
+  - cpanm --quiet --notest DBI IPC::Shareable Parallel::ForkManager Digest::HMAC_SHA1 String::Escape XML::LibXML Net::SFTP::Foreign
 script:
   - prove --timer --lib --recurse --jobs 2 --shuffle t/

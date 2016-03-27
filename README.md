@@ -1,4 +1,4 @@
-# Rex [![Build Status](https://travis-ci.org/RexOps/Rex.svg?branch=master)](https://travis-ci.org/RexOps/Rex)
+# Rex [![Build Status](https://travis-ci.org/RexOps/Rex.svg?branch=development)](https://travis-ci.org/RexOps/Rex)
 
 With (R)?ex you can manage all your boxes from a central point through the complete process of configuration management and software deployment.
 

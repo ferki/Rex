@@ -13,6 +13,6 @@ install:
   - dzil authordeps --missing | cpanm --quiet --notest
   - dzil listdeps --missing | cpanm --quiet --notest
   - cpanm --quiet --notest DBI IPC::Shareable Parallel::ForkManager Digest::HMAC_SHA1 String::Escape XML::LibXML Net::SFTP::Foreign IO::Pty
-script:
   - dzil build --in build --notgz
-  - cd build && prove --timer --lib --recurse --jobs 2 --shuffle t/
+script:
+  - cd build && RELEASE_TESTING=1 AUTHOR_TESTING=1 prove --timer --lib --recurse --jobs 2 --shuffle t/

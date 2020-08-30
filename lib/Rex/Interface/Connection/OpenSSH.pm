@@ -1,3 +1,4 @@
+## Please see file perltidy.ERR
 #
 # (c) Jan Gehring <jan.gehring@gmail.com>
 #
@@ -158,10 +159,15 @@ CONNECT_TRY:
       p $_try_auth_type;
 
       p @_internal_con_props;
+      p %net_openssh_constructor_options;
 
-      $self->{ssh} =
-        Net::OpenSSH->new( @_internal_con_props,
-        %net_openssh_constructor_options );
+      eval {
+        $self->{ssh} =
+          Net::OpenSSH->new( @_internal_con_props,
+          %net_openssh_constructor_options );
+      };
+
+      p $@;
 
       p $self->{ssh};
 

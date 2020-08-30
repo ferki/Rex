@@ -1366,7 +1366,7 @@ sub get_connection_type {
     }
   }
 
-  return $connection_type || "SSH";
+  return $connection_type || "OpenSSH";
 }
 
 sub get_ca {

@@ -155,9 +155,15 @@ CONNECT_TRY:
         }
       }
 
+      p $_try_auth_type;
+
+      p @_internal_con_props;
+
       $self->{ssh} =
         Net::OpenSSH->new( @_internal_con_props,
         %net_openssh_constructor_options );
+
+      p $self->{ssh};
 
       if ( $self->{ssh} && !$self->{ssh}->error ) {
         last CONNECT_TRY;

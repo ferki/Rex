@@ -138,6 +138,8 @@ CONNECT_TRY:
   while (
     $fail_connect < Rex::Config->get_max_connect_fails( server => $server ) )
   {
+    use DDP;
+    p $fail_connect;
 
     for my $_try_auth_type (@auth_types_to_try) {
 

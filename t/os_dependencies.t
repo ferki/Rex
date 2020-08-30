@@ -6,7 +6,7 @@ use Rex::Commands;
 
 my $dependency_ref = case $^O, {
   qr{MSWin} => [qw(Net::SSH2)],
-    default => [qw(Net::OpenSSH Net::SFTP::Foreign IO::Pty)],
+    default => [qw(Net::SFTP::Foreign IO::Pty)],
 };
 
 my @dependencies = @{$dependency_ref};

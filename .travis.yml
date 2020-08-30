@@ -25,7 +25,7 @@ jobs:
         - dzil authordeps | cpanm
         - dzil listdeps --author | cpanm
         # installing OS-specific dependencies
-        - cpanm IO::Pty Net::OpenSSH Net::SFTP::Foreign
+        - cpanm IO::Pty Net::SFTP::Foreign
         # installing optional dependencies
         - cpanm DBI IPC::Shareable
         - cpanm XML::LibXML
@@ -97,7 +97,7 @@ jobs:
         - dzil authordeps | cpanm
         - dzil listdeps --author | cpanm
         # installing OS-specific dependencies
-        - cpanm IO::Pty Net::OpenSSH Net::SFTP::Foreign
+        - cpanm IO::Pty Net::SFTP::Foreign
         # installing optional dependencies
         - cpanm DBI IPC::Shareable
         - cpanm XML::LibXML Expect

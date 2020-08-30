@@ -49,7 +49,7 @@ Then to install the OS-specific dependencies and (R)?ex itself:
 To install the OS-specific dependencies only, run one of these commands depending on your OS:
 
 - Windows: `cpanm Net::SSH2`
-- non-Windows: `cpanm Net::OpenSSH Net::SFTP::Foreign IO::Pty`
+- non-Windows: `cpanm Net::SFTP::Foreign IO::Pty`
 
 If you'd like to build a .tar.gz release file:
 

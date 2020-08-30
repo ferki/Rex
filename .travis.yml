@@ -27,9 +27,8 @@ jobs:
         # installing OS-specific dependencies
         - cpanm IO::Pty Net::SFTP::Foreign
         # installing optional dependencies
-        - cpanm DBI IPC::Shareable
-        - cpanm XML::LibXML
-        - cpanm File::LibMagic Test::mysqld Expect
+        - cpanm DBI IPC::Shareable XML::LibXML Expect
+        - cpanm File::LibMagic Test::mysqld
         - cpanm Devel::Cover::Report::Coveralls
       install:
         - dzil build --in build --notgz
@@ -63,8 +62,7 @@ jobs:
         # installing OS-specific dependencies
         - cpanm Net::SSH2
         # installing optional dependencies
-        - cpanm DBI
-        - cpanm XML::LibXML
+        - cpanm DBI XML::LibXML
         - cpanm --reinstall App::Prove
       install:
         - dzil build --in build --notgz
@@ -99,8 +97,7 @@ jobs:
         # installing OS-specific dependencies
         - cpanm IO::Pty Net::SFTP::Foreign
         # installing optional dependencies
-        - cpanm DBI IPC::Shareable
-        - cpanm XML::LibXML Expect
+        - cpanm DBI IPC::Shareable XML::LibXML Expect
       install:
         - dzil build --in build --notgz
       script:

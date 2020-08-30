@@ -112,7 +112,7 @@ To install remaining OS-specific dependencies and Rex itself, run:
 To install the OS-specific dependencies only, run one of these commands depending on your OS:
 
 - Windows: `cpanm Net::SSH2`
-- non-Windows: `cpanm Net::SFTP::Foreign IO::Pty`
+- non-Windows: `cpanm IO::Pty`
 
 [Perltidy](https://metacpan.org/pod/distribution/Perl-Tidy/bin/perltidy) takes care of maintaining a consistent source code formatting.
 

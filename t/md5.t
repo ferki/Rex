@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 3;
+use Test::More tests => 2;
 use Rex::Commands::MD5;
 
 my $test_file = Rex::Helper::File::Spec->catfile( 't', 'md5test.bin' );

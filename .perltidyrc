@@ -4,3 +4,4 @@
 --no-outdent-long-quotes
 --static-side-comments
 --trim-pod
+--warning-output

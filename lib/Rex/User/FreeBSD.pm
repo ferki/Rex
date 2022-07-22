@@ -162,7 +162,7 @@ sub rm_user {
     $cmd .= " -r ";
   }
 
-  my $output = i_run $cmd . " -n " . $user, fail_ok => 1;
+  my $output = i_run( $cmd . " -n " . $user ), fail_ok => 1;
   if ( $? == 67 ) {
     Rex::Logger::info( "Cannot delete user $user (no such user)", "warn" );
   }
@@ -229,7 +229,7 @@ sub create_group {
       $cmd .= " -g " . $data->{gid};
     }
 
-    i_run $cmd . " -n " . $group, fail_ok => 1;
+    i_run( $cmd . " -n " . $group ), fail_ok => 1;
     if ( $? != 0 ) {
       die("Error creating/modifying group $group");
     }

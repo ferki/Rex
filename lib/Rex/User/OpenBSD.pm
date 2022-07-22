@@ -290,7 +290,7 @@ sub rm_user {
     $cmd .= " -r";
   }
 
-  my $output = i_run $cmd . " " . $user, fail_ok => 1;
+  my $output = i_run( $cmd . " " . $user ), fail_ok => 1;
   if ( $? == 67 ) {
     Rex::Logger::info( "Cannot delete user $user (no such user)", "warn" );
   }

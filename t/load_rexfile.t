@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+
 use 5.010001;
 use strict;
 use warnings;
@@ -6,11 +7,12 @@ use warnings;
 our $VERSION = '9999.99.99_99'; # VERSION
 
 use Test::More tests => 21;
-use Test::Output;
-use File::Temp;
-use File::Spec;
 
+use File::Spec;
+use File::Temp;
 use Rex::CLI;
+use Test::Output;
+
 ## no critic (RequireTrailingCommaAtNewline);
 ## no critic (ProhibitPostfixControls, WhileDiamondDefaultAssignment);
 ## no critic (ProhibitPunctuationVars, ProhibitPackageVars);

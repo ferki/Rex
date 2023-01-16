@@ -4,6 +4,7 @@ use 5.010001;
 use strict;
 use warnings;
 use autodie;
+use re '/msx';
 
 our $VERSION = '9999.99.99_99'; # VERSION
 
@@ -15,7 +16,6 @@ use Rex::CLI;
 use Rex::Commands::File;
 use Test::Output;
 
-## no critic (RegularExpressions);
 ## no critic (ProhibitNoWarnings, DuplicateLiteral);
 
 $Rex::Logger::format = '%l - %s';
@@ -92,8 +92,8 @@ $rexfile = File::Spec->join( $testdir, 'Rexfile_noerror_print' );
 
 _setup_test();
 
-output_like { Rex::CLI::load_rexfile($rexfile); } qr/^This is STDOUT message$/,
-  qr/^This is STDERR message$/,
+output_like { Rex::CLI::load_rexfile($rexfile); }
+qr/^\QThis is STDOUT message\E$/, qr/^\QThis is STDERR message\E$/,
   'Correct stdout/stderr messages printed from valid Rexfile';
 
 is( cat($logfile), $expected->{log},
@@ -104,8 +104,8 @@ $rexfile = File::Spec->join( $testdir, 'Rexfile_warnings_print' );
 
 _setup_test();
 
-output_like { Rex::CLI::load_rexfile($rexfile); } qr/^This is STDOUT message$/,
-  qr/^This is STDERR message$/,
+output_like { Rex::CLI::load_rexfile($rexfile); }
+qr/^\QThis is STDOUT message\E$/, qr/^\QThis is STDERR message\E$/,
   'Correct stdout/stderr messages printed from Rexfile with warnings';
 
 is( cat($logfile), $expected->{log}, 'Code warnings exist via logger' );

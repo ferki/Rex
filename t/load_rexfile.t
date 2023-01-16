@@ -18,6 +18,8 @@ use Test::Output;
 ## no critic (RegularExpressions);
 ## no critic (ProhibitNoWarnings, DuplicateLiteral);
 
+$Rex::Logger::format = '%l - %s';
+
 my $testdir = File::Spec->join( 't', 'rexfiles' );
 
 my $exit_was_called;

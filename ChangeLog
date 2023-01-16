@@ -5,6 +5,7 @@ Revision history for Rex
 
  [BUG FIXES]
  - Detect invalid hostgroup expressions
+ - Prevent duplicate newline characters in logs
 
  [DOCUMENTATION]
  - Clarify optional arguments of file commands

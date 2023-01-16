@@ -56,7 +56,7 @@ $rexfile = File::Spec->join( $testdir, 'Rexfile_noerror' );
 
 _setup_test();
 
-output_like { Rex::CLI::load_rexfile($rexfile); } qr/^$/, qr/^$/,
+output_like { Rex::CLI::load_rexfile($rexfile); } qr{^$}, qr{^$},
   'No stdout/stderr messages on valid Rexfile';
 
 is( cat($logfile), $expected->{log},
@@ -67,7 +67,7 @@ $rexfile = File::Spec->join( $testdir, 'Rexfile_warnings' );
 
 _setup_test();
 
-output_like { Rex::CLI::load_rexfile($rexfile); } qr/^$/, qr/^$/,
+output_like { Rex::CLI::load_rexfile($rexfile); } qr{^$}, qr{^$},
   'No stdout/stderr messages on Rexfile with warnings';
 
 ok( !$exit_was_called, 'sub load_rexfile() not exit' );
@@ -79,7 +79,7 @@ $rexfile = File::Spec->join( $testdir, 'Rexfile_fatal' );
 
 _setup_test();
 
-output_like { Rex::CLI::load_rexfile($rexfile); } qr/^$/, qr/^$/,
+output_like { Rex::CLI::load_rexfile($rexfile); } qr{^$}, qr{^$},
   'No stdout/stderr messages on Rexfile with errors';
 
 ok( $exit_was_called, 'sub load_rexfile() aborts' );
@@ -93,7 +93,7 @@ $rexfile = File::Spec->join( $testdir, 'Rexfile_noerror_print' );
 _setup_test();
 
 output_like { Rex::CLI::load_rexfile($rexfile); }
-qr/^\QThis is STDOUT message\E$/, qr/^\QThis is STDERR message\E$/,
+qr{^\QThis is STDOUT message\E$}, qr{^\QThis is STDERR message\E$},
   'Correct stdout/stderr messages printed from valid Rexfile';
 
 is( cat($logfile), $expected->{log},
@@ -105,7 +105,7 @@ $rexfile = File::Spec->join( $testdir, 'Rexfile_warnings_print' );
 _setup_test();
 
 output_like { Rex::CLI::load_rexfile($rexfile); }
-qr/^\QThis is STDOUT message\E$/, qr/^\QThis is STDERR message\E$/,
+qr{^\QThis is STDOUT message\E$}, qr{^\QThis is STDERR message\E$},
   'Correct stdout/stderr messages printed from Rexfile with warnings';
 
 is( cat($logfile), $expected->{log}, 'Code warnings exist via logger' );
@@ -115,7 +115,7 @@ $rexfile = File::Spec->join( $testdir, 'Rexfile_fatal_print' );
 
 _setup_test();
 
-output_like { Rex::CLI::load_rexfile($rexfile); } qr/^$/, qr/^$/,
+output_like { Rex::CLI::load_rexfile($rexfile); } qr{^$}, qr{^$},
   'No stdout/stderr messages printed from Rexfile that has errors';
 
 ok( $exit_was_called, 'sub load_rexfile() aborts' );

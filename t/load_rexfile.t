@@ -3,6 +3,7 @@
 use 5.010001;
 use strict;
 use warnings;
+use autodie;
 
 our $VERSION = '9999.99.99_99'; # VERSION
 
@@ -15,10 +16,8 @@ use Rex::Commands::File;
 use Test::Output;
 
 ## no critic (RequireTrailingCommaAtNewline);
-## no critic (ProhibitPunctuationVars);
-## no critic (RequireCheckedSyscalls, RequireCheckedClose);
 ## no critic (RegularExpressions);
-## no critic (Carping, ProhibitNoWarnings, DuplicateLiteral);
+## no critic (ProhibitNoWarnings, DuplicateLiteral);
 
 my $testdir = File::Spec->join( 't', 'rexfiles' );
 
@@ -150,7 +149,7 @@ sub _reset_test {
   $exit_was_called = undef;
 
   # reset log
-  open my $fh, '>', $logfile or die $!;
+  open my $fh, '>', $logfile;
   close $fh;
 
   # reset require

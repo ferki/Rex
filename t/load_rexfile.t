@@ -15,7 +15,7 @@ use Test::Output;
 
 ## no critic (RequireTrailingCommaAtNewline);
 ## no critic (ProhibitPostfixControls, WhileDiamondDefaultAssignment);
-## no critic (ProhibitPunctuationVars, ProhibitPackageVars);
+## no critic (ProhibitPunctuationVars);
 ## no critic (RequireCheckedSyscalls, RequireCheckedClose);
 ## no critic (RegularExpressions);
 ## no critic (Carping, ProhibitNoWarnings, DuplicateLiteral);
@@ -36,7 +36,7 @@ while (<DATA>) {
 }
 close $fh if $fh;
 
-our $exit_was_called = undef;
+my $exit_was_called;
 
 # we must disable Rex::CLI::exit() sub imported from Rex::Commands
 no warnings 'redefine';

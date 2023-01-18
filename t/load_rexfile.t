@@ -11,6 +11,7 @@ use Test::More tests => 21;
 use File::Spec;
 use File::Temp;
 use Rex::CLI;
+use Rex::Commands::File;
 use Test::Output;
 
 ## no critic (ProhibitPunctuationVars);
@@ -40,7 +41,7 @@ Rex::Config->set_log_filename($logfile);
 
 # No Rexfile warning (via Rex::Logger)
 Rex::CLI::load_rexfile( File::Spec->catfile( $testdir, 'no_Rexfile' ) );
-my $content = _get_log();
+my $content = cat($logfile);
 like( $content, qr/WARN - No Rexfile found/,
   'No Rexfile warning (via logger)' );
 
@@ -50,7 +51,7 @@ output_like {
   Rex::CLI::load_rexfile( File::Spec->catfile( $testdir, 'Rexfile_noerror' ) );
 }
 qr/^$/, qr/^$/, 'No stdout/stderr messages on valid Rexfile';
-$content = _get_log();
+$content = cat($logfile);
 is( $content, q{}, 'No warnings on valid Rexfile (via logger)' );
 
 # Rexfile with warnings
@@ -59,7 +60,7 @@ output_like {
   Rex::CLI::load_rexfile( File::Spec->catfile( $testdir, 'Rexfile_warnings' ) );
 }
 qr/^$/, qr/^$/, 'No stdout/stderr messages on Rexfile with warnings';
-$content = _get_log();
+$content = cat($logfile);
 ok( !$exit_was_called, 'sub load_rexfile() not exit' );
 like(
   $content,
@@ -84,7 +85,7 @@ output_like {
   Rex::CLI::load_rexfile( File::Spec->catfile( $testdir, 'Rexfile_fatal' ) );
 }
 qr/^$/, qr/^$/, 'No stdout/stderr messages on Rexfile with errors';
-$content = _get_log();
+$content = cat($logfile);
 ok( $exit_was_called, 'sub load_rexfile() aborts' );
 like( $content, qr/ERROR - Compile time errors/, 'Fatal errors via logger' );
 like( $content, qr/syntax error at/, 'syntax error is fatal error via logger' );
@@ -103,7 +104,7 @@ output_like {
 }
 qr/^This is STDOUT message$/, qr/^This is STDERR message$/,
   'Correct stdout/stderr messages printed from valid Rexfile';
-$content = _get_log();
+$content = cat($logfile);
 is( $content, q{},
   'No warnings via logger on valid Rexfile that print messages' );
 
@@ -115,7 +116,7 @@ output_like {
 }
 qr/^This is STDOUT message$/, qr/^This is STDERR message$/,
   'Correct stdout/stderr messages printed from Rexfile with warnings';
-$content = _get_log();
+$content = cat($logfile);
 like(
   $content,
   qr/WARN - You have some code warnings/,
@@ -130,25 +131,13 @@ output_like {
 }
 qr/^$/, qr/^$/,
   'No stdout/stderr messages printed from Rexfile that has errors';
-$content = _get_log();
+$content = cat($logfile);
 ok( $exit_was_called, 'sub load_rexfile() aborts' );
 like(
   $content,
   qr/ERROR - Compile time errors/,
   'Fatal errors exist via logger'
 );
-
-# from logger.t
-sub _get_log {
-  ## no critic (LocalVars)
-  local $/;
-
-  open my $fh, '<', $logfile or die $!;
-  my $loglines = <$fh>;
-  close $fh;
-
-  return $loglines;
-}
 
 sub _reset_test {
   Rex::TaskList->create->clear_tasks();

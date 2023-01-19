@@ -16,7 +16,7 @@ use Rex::CLI;
 use Rex::Commands::File;
 use Test::Output;
 
-## no critic (ProhibitNoWarnings, DuplicateLiteral);
+## no critic (DuplicateLiteral);
 
 $Rex::Logger::format = '%l - %s';
 
@@ -26,10 +26,7 @@ my $empty        = q();
 
 my ( $exit_was_called, $expected );
 
-# we must disable Rex::CLI::exit() sub imported from Rex::Commands
-no warnings 'redefine';
 local *Rex::CLI::exit = sub { $exit_was_called = 1 };
-use warnings 'redefine';
 
 #
 # enable this to debug!

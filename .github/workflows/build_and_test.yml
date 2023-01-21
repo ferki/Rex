@@ -163,11 +163,57 @@ jobs:
           - macos
         perl:
           - latest
+          - '5.34'
+          - '5.32'
+          - '5.30'
+          - '5.28'
+          - '5.26'
+          - '5.24'
+          - '5.22'
+          - '5.20'
+          - '5.18'
+          - '5.16'
+          - '5.14'
+          - '5.12'
+          - '5.10'
         distribution:
           - default
         include:
           - os: windows
             perl: latest
+            distribution: strawberry
+          - os: windows
+            perl: '5.30'
+            distribution: strawberry
+          - os: windows
+            perl: '5.28'
+            distribution: strawberry
+          - os: windows
+            perl: '5.26'
+            distribution: strawberry
+          - os: windows
+            perl: '5.24'
+            distribution: strawberry
+          - os: windows
+            perl: '5.22'
+            distribution: strawberry
+          - os: windows
+            perl: '5.20'
+            distribution: strawberry
+          - os: windows
+            perl: '5.18'
+            distribution: strawberry
+          - os: windows
+            perl: '5.16'
+            distribution: strawberry
+          - os: windows
+            perl: '5.14'
+            distribution: strawberry
+          - os: windows
+            perl: '5.12'
+            distribution: strawberry
+          - os: windows
+            perl: '5.10'
             distribution: strawberry
 
     runs-on: ${{ matrix.os }}-latest

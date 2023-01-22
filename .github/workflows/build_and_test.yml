@@ -151,6 +151,10 @@ jobs:
           restore-keys: cache-perlcritic-history-
       - name: Run extra tests
         run: prove --timer --lib --recurse --jobs $(nproc) --shuffle xt/
+      - name: Upload .perlcritic-history
+        uses: actions/upload-artifact@v3
+        with:
+          path: /tmp/cache/.perlcritic-history
 
   tests:
     needs: build

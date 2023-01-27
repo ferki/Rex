@@ -19,6 +19,7 @@ Revision history for Rex
  [MAJOR]
 
  [MINOR]
+ - Require minimum perl-5.12.5 to run
 
  [NEW FEATURES]
 

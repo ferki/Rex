@@ -2,13 +2,15 @@ use strict;
 use warnings;
 
 use Test::More;
+
+use English qw(-no_match_vars);
 use File::Spec;
 use File::Temp qw(tempdir);
 
 use Rex -base;
 use Rex::Helper::Path;
 
-if ( $^O =~ m/^MSWin/ ) {
+if ( $OSNAME =~ m/^MSWin/ ) {
   plan skip_all => 'No symlink support on Windows';
 }
 

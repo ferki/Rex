@@ -6,12 +6,13 @@ use Test::More;
 use English qw(-no_match_vars);
 use File::Spec;
 use File::Temp qw(tempdir);
+use if $OSNAME eq 'MSWin32', 'Win32', 0.55;
 
 use Rex -base;
 use Rex::Helper::Path;
 
-if ( $OSNAME =~ m/^MSWin/ ) {
-  plan skip_all => 'No symlink support on Windows';
+if ( $OSNAME =~ m/^MSWin/ && !Win32::IsSymlinkCreationAllowed() ) {
+  plan skip_all => 'Symlink creation is not allowed on this Windows system.';
 }
 
 $::QUIET = 1;

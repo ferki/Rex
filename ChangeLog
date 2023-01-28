@@ -16,6 +16,7 @@ Revision history for Rex
  - Correct example for file_read command
 
  [ENHANCEMENTS]
+ - Support symlinks on Windows
 
  [MAJOR]
 

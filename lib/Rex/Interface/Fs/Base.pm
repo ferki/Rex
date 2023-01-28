@@ -56,7 +56,13 @@ sub ln {
   ($to)   = $self->_normalize_path($to);
 
   my $exec = Rex::Interface::Exec->create;
-  $exec->exec("ln -snf $from $to");
+
+  if ( $exec->can_run( ['ln'] ) ) {
+    $exec->exec("ln -snf $from $to");
+  }
+  elsif ( $exec->can_run( ['perl'] ) ) {
+    $exec->exec(qq(perl -E "symlink('$from', '$to')"));
+  }
 
   if ( $? == 0 ) { return 1; }
 

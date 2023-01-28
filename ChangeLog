@@ -8,6 +8,7 @@ Revision history for Rex
  - Prevent empty log lines upon Rexfile warnings
  - Fix tests on Strawberry Perl older than 5.16
  - Fix uninitialized warnings on older Perl versions
+ - Fix tests for file on_change hooks on Windows
 
  [DOCUMENTATION]
  - Clarify optional arguments of file commands

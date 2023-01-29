@@ -348,13 +348,13 @@ sub build_child_coderef {
       my $e         = $@;
       my $exit_code = $@ ? ( $? || 1 ) : 0;
 
-      push @SUMMARY,
-        {
-        task          => $task->name,
-        server        => $server->to_s,
-        exit_code     => $exit_code,
-        error_message => $e,
-        };
+      # push @SUMMARY,
+      #   {
+      #   task          => $task->name,
+      #   server        => $server->to_s,
+      #   exit_code     => $exit_code,
+      #   error_message => $e,
+      #   };
     }
 
     Rex::Logger::debug("Destroying all cached os information");

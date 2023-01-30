@@ -11,6 +11,8 @@ use Rex::Transaction;
 
 $::QUIET = 1;
 
+Rex::Config->set_waitpid_blocking_sleep_time(0);
+
 subtest "distributor => 'Base'" => sub {
 
   subtest 'exec_autodie => 0' => sub {

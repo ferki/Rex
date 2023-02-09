@@ -41,15 +41,11 @@ sub create_tasks {
 
   desc "desc 1";
   task "task1" => sub {
-    my $cmd = $^O =~ /MSWin32/ ? "type" : "cat";
-    run "$cmd asdfxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    run 'exit 1';
   };
 
   desc "desc 2";
-  task "task2" => sub {
-    my $cmd = $^O =~ /MSWin32/ ? "dir" : "ls";
-    run $cmd;
-  };
+  task "task2" => sub { };
 
   desc "desc 3";
   task "task3" => sub {

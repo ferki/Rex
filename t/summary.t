@@ -12,6 +12,8 @@ use Rex::Transaction;
 
 $::QUIET = 1;
 
+Rex::Config->set_waitpid_blocking_sleep_time(0.001);
+
 my @distributors = ('Base');
 
 if ( check_install( module => 'Parallel::ForkManager' ) ) {

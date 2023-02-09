@@ -21,18 +21,14 @@ if ( check_install( module => 'Parallel::ForkManager' ) ) {
 plan tests => scalar @distributors * 2;
 
 for my $distributor (@distributors) {
-
   Rex::Config->set_distributor($distributor);
 
-  subtest "$distributor distributor with exec_autodie => 0" => sub {
-    Rex::Config->set_exec_autodie(0);
-    test_summary();
-  };
-
-  subtest "$distributor distributor with exec_autodie => 1" => sub {
-    Rex::Config->set_exec_autodie(1);
-    test_summary();
-  };
+  for my $autodie ( FALSE, TRUE ) {
+    subtest "$distributor distributor with exec_autodie => $autodie" => sub {
+      Rex::Config->set_exec_autodie($autodie);
+      test_summary();
+    };
+  }
 }
 
 sub create_tasks {

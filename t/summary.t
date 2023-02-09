@@ -26,22 +26,12 @@ for my $distributor (@distributors) {
 
   subtest "$distributor distributor with exec_autodie => 0" => sub {
     Rex::Config->set_exec_autodie(0);
-    test_summary(
-      task0 => { server => '<local>', task => 'task0', exit_code => 1 },
-      task1 => { server => '<local>', task => 'task1', exit_code => 0 },
-      task2 => { server => '<local>', task => 'task2', exit_code => 0 },
-      task3 => { server => '<local>', task => 'task3', exit_code => 1 },
-    );
+    test_summary();
   };
 
   subtest "$distributor distributor with exec_autodie => 1" => sub {
     Rex::Config->set_exec_autodie(1);
-    test_summary(
-      task0 => { server => '<local>', task => 'task0', exit_code => 1 },
-      task1 => { server => '<local>', task => 'task1', exit_code => 1 },
-      task2 => { server => '<local>', task => 'task2', exit_code => 0 },
-      task3 => { server => '<local>', task => 'task3', exit_code => 1 },
-    );
+    test_summary();
   };
 }
 
@@ -72,14 +62,28 @@ sub create_tasks {
 }
 
 sub test_summary {
-  my (%expected) = @_;
   my @expected_summary;
+
+  my %exit_code_for = (
+    task0 => 1,
+    task1 => Rex::Config->get_exec_autodie() ? 1 : 0,
+    task2 => 0,
+    task3 => 1,
+  );
 
   $Rex::TaskList::task_list = undef;
 
   create_tasks();
 
   for my $task_name ( Rex::TaskList->create->get_tasks ) {
+    my %expected_summary_for = (
+      $task_name => {
+        server    => '<local>',
+        task      => $task_name,
+        exit_code => $exit_code_for{$task_name},
+      },
+    );
+
     Rex::TaskList->run($task_name);
     my @summary = Rex::TaskList->create->get_summary;
 
@@ -88,10 +92,10 @@ sub test_summary {
       delete $_->{error_message};
     }
 
-    push @expected_summary, $expected{$task_name};
+    push @expected_summary, $expected_summary_for{$task_name};
 
     my $test_description =
-      $expected{$task_name}->{exit_code} == 0
+      $expected_summary_for{$task_name}->{exit_code} == 0
       ? "$task_name succeeded"
       : "$task_name failed";
 

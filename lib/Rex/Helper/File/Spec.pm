@@ -43,6 +43,11 @@ sub rootdir {
   _spec()->rootdir(@_);
 }
 
+sub file_name_is_absolute {
+  my ( $self, @args ) = @_;
+  return _spec()->file_name_is_absolute(@args);
+}
+
 sub _spec {
   if ( Rex::is_ssh() ) {
     return "File::Spec::Unix";

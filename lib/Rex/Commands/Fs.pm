@@ -320,11 +320,15 @@ sub mkdir {
     &chmod( $mode, $dir )  if $mode;
   }
   else {
+    use DDP;
+    p $dir;
     if ( !Rex::Helper::File::Spec->file_name_is_absolute($dir) ) {
       $dir = Rex::Helper::File::Spec->join( q(.), $dir );
     }
+    p $dir;
 
     my @directories = __splitdir($dir);
+    p @directories;
     my $path_so_far = shift @directories;
 
     for my $part (@directories) {

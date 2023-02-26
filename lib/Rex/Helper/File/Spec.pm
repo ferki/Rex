@@ -25,6 +25,9 @@ sub AUTOLOAD { ## no critic (ProhibitAutoloading)
     $file_spec_flavor = 'File::Spec::Win32';
   }
 
+  use DDP;
+  p $file_spec_flavor;
+
   return $file_spec_flavor->$method(@args);
 }
 

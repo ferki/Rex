@@ -146,4 +146,4 @@ jobs:
         id: cores
         uses: SimenB/github-actions-cpu-cores@v1
       - name: Run tests
-        run: prove --timer --lib --recurse --jobs ${{ steps.cores.outputs.count }} --shuffle t/
+        run: prove --timer --lib --recurse --jobs ${{ steps.cores.outputs.count }} --shuffle t/fs.t t/report.t

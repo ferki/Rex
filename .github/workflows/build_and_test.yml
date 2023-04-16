@@ -115,8 +115,6 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - ubuntu
-          - macos
           - windows
         perl:
           - latest

@@ -15,7 +15,7 @@ use Rex::Commands::Run;
 use Rex::Commands::SCM;
 use Rex::Helper::Run;
 
-$::QUIET = 1;
+$Rex::Logger::debug = 1;
 
 my $git = can_run('git');
 

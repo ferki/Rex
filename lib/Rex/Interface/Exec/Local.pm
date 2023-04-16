@@ -49,7 +49,7 @@ sub exec {
   my ( $out, $err, $pid );
 
   if ( exists $option->{cwd} ) {
-    $cmd = "cd " . $option->{cwd} . " && $cmd";
+    $cmd = "cd /d " . $option->{cwd} . " && $cmd";
   }
 
   if ( exists $option->{path} ) {

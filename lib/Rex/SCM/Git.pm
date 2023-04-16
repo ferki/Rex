@@ -42,7 +42,7 @@ sub checkout {
     Rex::Logger::info( "Cloning "
         . $repo_info->{"url"} . " to "
         . ( $checkout_to ? $checkout_to : "." ) );
-    my $out = i_run "$clone_cmd",
+    my $out = i_run "cd && $clone_cmd && cd",
       cwd     => dirname($checkout_to),
       fail_ok => 1,
       %run_opt;

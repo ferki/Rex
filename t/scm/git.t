@@ -43,6 +43,9 @@ subtest 'clone into non-existing directory', sub {
 
   set repository => $test_repo_name, url => $test_repo_dir;
 
+  say i_run 'cd';
+  say i_run 'cd', cwd => $clone_target_dir;
+
   ok( -d $clone_target_dir, "$clone_target_dir could be created" );
 
   rmdir $clone_target_dir;
